@@ -60,10 +60,9 @@ namespace FileEncryptionDecryption
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex. Message);
+                    MessageBox.Show(ex.Message);
                 }
             }
-
         }
 
         private void btnEncrypt_Click(object sender, EventArgs e)
@@ -73,8 +72,20 @@ namespace FileEncryptionDecryption
             // Validate input file path
 
             // Perform encryption
-                // Update status and notify user
+            // Update status and notify user
+          try
+          { 
+            StreamWriter outputFile;
+            outputFile = File.CreateText("ZombieIpsum.txt");
 
+            outputFile.WriteLine(txtOutputPath.Text);
+
+            outputFile.Close();
+          }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
         }
 
