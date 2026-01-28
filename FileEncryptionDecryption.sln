@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36109.1 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileEncryption", "FileEncryptionDecryption\FileEncryption.csproj", "{351383E3-0BD7-4962-BFD2-64B17BDE6FDE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileDecryption", "FileDecryption\FileDecryption.csproj", "{E511A183-C848-4DA5-B681-1D01535144B0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{351383E3-0BD7-4962-BFD2-64B17BDE6FDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{351383E3-0BD7-4962-BFD2-64B17BDE6FDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{351383E3-0BD7-4962-BFD2-64B17BDE6FDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{351383E3-0BD7-4962-BFD2-64B17BDE6FDE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E511A183-C848-4DA5-B681-1D01535144B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E511A183-C848-4DA5-B681-1D01535144B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E511A183-C848-4DA5-B681-1D01535144B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E511A183-C848-4DA5-B681-1D01535144B0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {470E4658-8A2F-4EDA-B525-12C97FEC9E3C}
+	EndGlobalSection
+EndGlobal
