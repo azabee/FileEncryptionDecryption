@@ -1,3 +1,5 @@
+using System.IO;
+
 namespace FileEncryptionDecryption
 {
     public partial class FileEncryptionForm : Form
@@ -33,6 +35,8 @@ namespace FileEncryptionDecryption
             { 'Z', 'I' }, { 'z', 'J' }
         };
 
+        string outputPath; 
+
         public FileEncryptionForm()
         {
             InitializeComponent();
@@ -53,15 +57,17 @@ namespace FileEncryptionDecryption
             // Show open file dialog to select input file            
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                try
+
+                if (!File.Exists(openFileDialog1.FileName))
                 {
-                    var sr = new StreamReader(openFileDialog1.FileName);
-                    txtInputPath.Text = sr.ReadToEnd();
+                    MessageBox.Show("error file not found");
                 }
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show(ex.Message);
+                    outputPath = openFileDialog1.FileName;
+                    txtOutputPath.Text = outputPath;
                 }
+
             }
         }
 
@@ -73,20 +79,8 @@ namespace FileEncryptionDecryption
 
             // Perform encryption
             // Update status and notify user
-          try
-          { 
-            StreamWriter outputFile;
-            outputFile = File.CreateText("EncryptedIpsum.txt");
-
-            outputFile.WriteLine(txtOutputPath.Text);
-
-            outputFile.Close();
-          }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-
+            EncryptFile(txtInputPath.Text, outputPath, codes);
+          
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -110,6 +104,8 @@ namespace FileEncryptionDecryption
                         writer.Write(c);        //leave unchanged
                 }
             }
+                     
+           
 
         }
     }

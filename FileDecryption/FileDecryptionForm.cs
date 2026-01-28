@@ -32,7 +32,7 @@ namespace FileDecryption
             { 'Y', 'G' }, { 'y', 'H' },
             { 'Z', 'I' }, { 'z', 'J' }
         };
-
+        string outputPath;
         // Reverse dictionary for decryption
                 
             
@@ -56,6 +56,20 @@ namespace FileDecryption
         private void btnBrowse_Click(object sender, EventArgs e)
         {
             // Show open file dialog to select encrypted file
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+
+                if (!File.Exists(openFileDialog1.FileName))
+                {
+                    MessageBox.Show("error file not found");
+                }
+                else
+                {
+                    outputPath = openFileDialog1.FileName;
+                    txtEncryptedPath.Text = outputPath;
+                }
+
+            }
         }
 
         private void btnDecrypt_Click(object sender, EventArgs e)
@@ -70,6 +84,9 @@ namespace FileDecryption
         private void btnClear_Click(object sender, EventArgs e)
         {
             // Clear all fields
+            txtEncryptedPath.Clear();
+            txtDecrypted.Clear();
+
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -90,7 +107,7 @@ namespace FileDecryption
             // Build reverse dictionary for decryption
 
             // loop through original codes dictionary
-                // If duplicates exist, this will overwrite and break decryption.
+            // If duplicates exist, this will overwrite and break decryption.
 
             // return reverse dictionary
         }
