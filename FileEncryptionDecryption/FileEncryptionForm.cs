@@ -47,10 +47,22 @@ namespace FileEncryptionDecryption
             // Set initial status
 
         }
-
+        
         private void btnBrowseInput_Click(object sender, EventArgs e)
         {
-            // Show open file dialog to select input file
+            // Show open file dialog to select input file            
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    var sr = new StreamReader(openFileDialog1.FileName);
+                    txtInputPath.Text = sr.ReadToEnd();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex. Message);
+                }
+            }
 
         }
 
@@ -62,6 +74,8 @@ namespace FileEncryptionDecryption
 
             // Perform encryption
                 // Update status and notify user
+
+
         }
 
         private void btnExit_Click(object sender, EventArgs e)
