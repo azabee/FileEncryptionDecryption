@@ -32,20 +32,19 @@ namespace FileDecryption
             { 'Y', 'G' }, { 'y', 'H' },
             { 'Z', 'I' }, { 'z', 'J' }
         };
-        string outputPath;
-        // Reverse dictionary for decryption
-                
-            
-    public FileDecryptionForm()
+        string outputPath;     
+        // Reverse dictionary for decryption               
+
+        public FileDecryptionForm()
         {
             InitializeComponent();
         }
-
 
         private void DecryptorForm_Load(object sender, EventArgs e)
         {
             // Build codes dictionary
             // Build reverse dictionary for decryption
+
             Dictionary<char, char> reverse = new Dictionary<char, char>();
             foreach (KeyValuePair<char, char> element in codes)
             {
@@ -68,7 +67,6 @@ namespace FileDecryption
                     outputPath = openFileDialog1.FileName;
                     txtEncryptedPath.Text = outputPath;
                 }
-
             }
         }
 
@@ -79,6 +77,8 @@ namespace FileDecryption
             // Validate input file path
 
             // Perform decryption
+            BuildReverseDictionary(codes);
+            DecryptFileToString(outputPath,reverseCodes);
         }
 
         private void btnClear_Click(object sender, EventArgs e)
@@ -95,12 +95,6 @@ namespace FileDecryption
             this.Close();
         }
 
-        // Must match Encryptor EXACTLY
-        // method to build codes dictionary
-        private Dictionary<char, char> BuildCodesDictionary()
-        {
-
-        }
 
         private Dictionary<char, char> BuildReverseDictionary(Dictionary<char, char> codes)
         {
@@ -110,6 +104,27 @@ namespace FileDecryption
             // If duplicates exist, this will overwrite and break decryption.
 
             // return reverse dictionary
+            Dictionary<char, char> reverseCodes = new Dictionary<char, char>();
+            foreach (var pair in codes)
+            {
+                reverseCodes[pair.Value] = pair.Key;
+            }
+                     
+            using (StreamReader reader = new StreamReader(outputPath))                
+            {
+                string content = reader.ReadToEnd();
+                string decrypted = "";
+
+                foreach (char symbol in content)
+                {
+                    if (reverseCodes.ContainsKey(symbol))
+                        decrypted += reverseCodes[symbol];
+                    else
+                        decrypted += symbol;
+                }
+
+                txtDecrypted.Text = decrypted;                                
+            }
         }
 
         private string DecryptFileToString(string inputPath, Dictionary<char, char> reverseCodes)
@@ -120,6 +135,18 @@ namespace FileDecryption
             // read each character, decrypt, and append to StringBuilder
 
             // return decrypted string
+            using (StreamReader reader = new StreamReader(inputPath))
+            using (StreamWriter writer = new StreamWriter(outputPath))
+            {                
+                while (!reader.EndOfStream)
+                {
+                    char c = (char)reader.Read();
+                    if (codes.ContainsKey(c))
+                        writer.Write(codes[c]); //encrypt
+                    else
+                        writer.Write(c);        //leave unchanged
+                }
+            }
         }
     }
 }
