@@ -35,7 +35,7 @@ namespace FileEncryptionDecryption
             { 'Z', 'I' }, { 'z', 'J' }
         };
 
-        string outputPath; 
+        string outputPath;
 
         public FileEncryptionForm()
         {
@@ -49,9 +49,8 @@ namespace FileEncryptionDecryption
             // Set default output path
 
             // Set initial status
-
         }
-        
+
         private void btnBrowseInput_Click(object sender, EventArgs e)
         {
             // Show open file dialog to select input file            
@@ -80,7 +79,6 @@ namespace FileEncryptionDecryption
             // Perform encryption
             // Update status and notify user
             EncryptFile(txtInputPath.Text, outputPath, codes);
-          
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -101,12 +99,12 @@ namespace FileEncryptionDecryption
                     if (codes.ContainsKey(c))
                         writer.Write(codes[c]); //encrypt
                     else
-                        writer.Write(c);        //leave unchanged
+                        writer.Write(c);        //leave unchanged                }
                 }
-            }
-                     
-           
 
+
+
+            }
         }
     }
 }
