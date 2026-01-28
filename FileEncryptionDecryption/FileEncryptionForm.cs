@@ -76,7 +76,7 @@ namespace FileEncryptionDecryption
           try
           { 
             StreamWriter outputFile;
-            outputFile = File.CreateText("ZombieIpsum.txt");
+            outputFile = File.CreateText("EncryptedIpsum.txt");
 
             outputFile.WriteLine(txtOutputPath.Text);
 
